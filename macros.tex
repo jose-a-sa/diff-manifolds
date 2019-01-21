@@ -1,0 +1,143 @@
+% !TEX root = ../Main.tex
+
+%--------------------------------------------------------------------------------
+%	PACKAGES
+%--------------------------------------------------------------------------------
+
+\usepackage{amsmath,amsfonts,amssymb,amscd,amsbsy,amsthm,mathtools,textcomp,stackrel}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{esint}
+\usepackage{enumerate}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\DeclareSymbolFont{cmletters}{OT1}{cmr}{m}{n}
+\DeclareMathSymbol{\Upsilon}{\mathalpha}{cmletters}{"7}
+
+\usepackage[bbgreekl]{mathbbol}
+\DeclareSymbolFontAlphabet{\mathbb}{AMSb}
+\DeclareSymbolFontAlphabet{\mathbbl}{bbold}
+
+\usepackage[mathscr]{euscript}
+
+%--------------------------------------------------------------------------------
+%	WRAPPERS
+%--------------------------------------------------------------------------------
+
+\newcommand{\fracdd}[2][]{\frac{\dd #1}{\dd #2}}
+\newcommand{\fracpd}[2][]{\frac{\partial #1}{\partial #2}}
+
+\newcommand{\uu}[3][]{\,{}_{#1} #2_{#3}}
+
+%--------------------------------------------------------------------------------
+%	MAPS
+%--------------------------------------------------------------------------------
+
+\renewcommand{\to}{\xrightarrow{\;\hphantom{\cong}\;}}
+\renewcommand{\mapsto}{\xmapsto{\;\hphantom{\cong}\;}}
+\newcommand{\homeoto}{\xrightarrow{\;\cong\;}}
+
+%--------------------------------------------------------------------------------
+%	SYMBOLS
+%--------------------------------------------------------------------------------
+
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+
+% USUAL SETS
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calV}{\mathcal{V}}
+
+% FIELDS OF NUMBERS
+\newcommand{\bbN}{\mathbb N}
+\newcommand{\bbZ}{\mathbb Z}
+\newcommand{\bbQ}{\mathbb Q}
+\newcommand{\bbR}{\mathbb R}
+\newcommand{\bbC}{\mathbb C}
+\newcommand{\bbF}{\mathbb F}
+
+\newcommand{\bblN}{\mathbbl N}
+\newcommand{\bblZ}{\mathbbl Z}
+\newcommand{\bblQ}{\mathbbl Q}
+\newcommand{\bblR}{\mathbbl R}
+\newcommand{\bblC}{\mathbbl C}
+\newcommand{\bblF}{\mathbbl F}
+
+% INTEGRALS / EXTERIOR D
+\newcommand{\dd}{\mathrm{d}}
+
+
+%--------------------------------------------------------------------------------
+%	GRAPHS
+%--------------------------------------------------------------------------------
+
+% usage:
+% \shortexact[f][g]{A}{B}{C},
+%
+%			 f    g
+% for 0 -> A -> B -> C -> 0,
+\DeclareDocumentCommand{\shortexact}{O{} O{} mmmm}{
+\xymatrix{
+	0\ar[r] & #3\ar[r]^-{#1} & #4\ar[r]^-{#2} & #5\ar[r] & 0#6
+}}
+% exactly the same, but for 0 -> A -> B -> C
+\DeclareDocumentCommand{\leftexact}{O{} O{} mmmm}{
+\xymatrix{
+	0\ar[r] & #3\ar[r]^-{#1} & #4\ar[r]^-{#2} & #5 #6
+}}
+% ... and the same, for A -> B -> C -> 0
+\DeclareDocumentCommand{\rightexact}{O{} O{} mmmm}{
+\xymatrix{
+	#3\ar[r]^-{#1} & #4\ar[r]^-{#2} & #5\ar[r] & 0#6
+}}
+
+
+%--------------------------------------------------------------------------------
+%	DELIMITERS
+%--------------------------------------------------------------------------------
+
+\DeclarePairedDelimiter\angl{\langle}{\rangle}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\bkt{[}{]}
+%\DeclarePairedDelimiter\set{\lbrace\,}{\,\rbrace}
+\DeclarePairedDelimiterX\set[1]{\lbrace}{\rbrace}{\,#1\,}
+\DeclarePairedDelimiterX\setst[2]{\lbrace}{\rbrace}{\,#1 \;\delimsize\vert\; #2\,}
+
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+\DeclarePairedDelimiterX\braOket[3]{\langle}{\rangle}{#1 \delimsize\vert #2 \delimsize\vert #3}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+%--------------------------------------------------------------------------------
+%	THEOREMS
+%--------------------------------------------------------------------------------
+
+%\catcode`\"=13
+%\newcommand{"}[1]{^{(#1)}}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem{example}{Example}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem*{claim}{Claim}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{fact}{Fact}
+
+\numberwithin{theorem}{section}
+\numberwithin{lemma}{section}
+\numberwithin{corollary}{section}
+\numberwithin{proposition}{section}
+\numberwithin{exercise}{section}
+\numberwithin{example}{section}
+\numberwithin{definition}{section}
+

@@ -1,0 +1,78 @@
+
+\documentclass[11pt,a4paper]{article}
+
+%--------------------------------------------------------------------------------
+%   PACKAGES
+%--------------------------------------------------------------------------------
+
+%%% JHEP
+\usepackage{jheppub}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\maketitle}{\@fpheader}{}{}{}
+\makeatother
+
+%%% FONTS
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%\usepackage{mathpazo}
+\usepackage{setspace}
+
+%% REFERENCES
+\usepackage{cleveref}
+\newcommand{\crefrangeconjunction}{--}
+
+%%% SECTIONING
+\usepackage{sectsty}
+\sectionfont{\LARGE\selectfont}
+\subsubsectionfont{\normalfont\bfseries\selectfont}
+
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+
+%%% HYPERLINKS
+\hypersetup{pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
+   bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
+   colorlinks,citecolor=green,urlcolor=blue,linkcolor=red,
+   pdfstartview={FitV},unicode,breaklinks=true}
+
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+
+\input{macros}
+
+\setlength{\parindent}{0em}
+
+%--------------------------------------------------------------------------------
+%   TITLEPAGE
+%--------------------------------------------------------------------------------
+
+\title{Differential Manifolds}
+
+\author{José Sá}
+\affiliation[1]{DAMTP, University of Cambridge, UK}
+\emailAdd{jac295@cam.ac.uk}
+
+
+\abstract{Abstract test...}
+
+
+%--------------------------------------------------------------------------------
+%   DOCUMENT
+%--------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+\clearpage
+
+\input{Sections/Section1}
+%\input{Sections/Section2}
+
+\end{document}
