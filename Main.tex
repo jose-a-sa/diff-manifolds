@@ -16,11 +16,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 %\usepackage{mathpazo}
-\usepackage{setspace}
+%\usepackage{setspace}
+\usepackage{parskip}
+\setlength{\parskip}{0.5em}
 
 %% REFERENCES
-\usepackage{cleveref}
-\newcommand{\crefrangeconjunction}{--}
+\usepackage[sort&compress]{natbib}
+%\setcitestyle{authoryear,open={(},close={)}}
+%\usepackage{cleveref}
+%\newcommand{\crefrangeconjunction}{--}
 
 %%% SECTIONING
 \usepackage{sectsty}
@@ -40,27 +44,42 @@
    colorlinks,citecolor=green,urlcolor=blue,linkcolor=red,
    pdfstartview={FitV},unicode,breaklinks=true}
 
+\usepackage{graphicx}
+\graphicspath{{Figures/}}
+\usepackage{epstopdf}
+
+\usepackage[small]{caption}
 \usepackage{float}
+
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
+\usetikzlibrary{intersections}
 
 \input{macros}
 
-\setlength{\parindent}{0em}
+
+%% FIX SPACING IN TOC
+\makeatletter
+\patchcmd\deferred@thm@head
+  {\addvspace{-\parskip}}
+  {}
+  {}{\typeout{\string\deferred@thm@head patch failed!}}
+\makeatletter
+
 
 %--------------------------------------------------------------------------------
 %   TITLEPAGE
 %--------------------------------------------------------------------------------
 
-\title{Differential Manifolds}
+\title{Introduction to Differential Manifolds}
 
 \author{José Sá}
-\affiliation[1]{DAMTP, University of Cambridge, UK}
+\affiliation{Wolfson College, University of Cambridge, UK}
 \emailAdd{jac295@cam.ac.uk}
 
 
-\abstract{Abstract test...}
+\abstract{Notes based on the lectures by Peter Gothen at University of Porto with personal inclusions (pun intended) here and there.}
 
 
 %--------------------------------------------------------------------------------
@@ -73,6 +92,13 @@
 \clearpage
 
 \input{Sections/Section1}
-%\input{Sections/Section2}
+\input{Sections/Section2}
+\input{Sections/Section3}
+\input{Sections/Section4}
+\input{Sections/Section5}
+
+\nocite{*}
+\bibliographystyle{apsrev4-1-etal}
+\bibliography{bibliography}
 
 \end{document}

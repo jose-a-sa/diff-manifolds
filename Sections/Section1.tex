@@ -1,6 +1,6 @@
 % !TEX root = ../Main.tex
 
-\section{Differential Manifolds and differentiable maps}
+\section{Differential Manifolds and Differentiable Maps}
 \label{Section1}
 
 \subsection{Review of General Topology}
@@ -10,7 +10,7 @@ Let $S$ be a set.
 \begin{definition}
 	A topology is a collection $\calT$ of subsets of $S$, called the open sets, such that:
 	\begin{enumerate}[(i)]
-		\item $\phi, S \in \calT$, where $\phi\equiv\set{}$ is the empty set.
+		\item $\emptyset, S \in \calT$, where $\emptyset$ is the empty set.
 		\item if $U_\alpha \in \calT$, for $\alpha\in A$, then $\bigcup_{\alpha\in A} U_\alpha \in \calT$
 		\item if $U_1, \dots, U_n \in \calT$, $n \in \bbN$, then $\bigcap_{i=1}^n U_n \in \calT$  
 	\end{enumerate}
@@ -37,11 +37,11 @@ Let $S$ be a set.
 \end{example}
 
 \begin{definition}
-	$(S,\calT)$ is second countable if the topology $\calT$ has a countable basis.
+	$(S,\calT)$ is second-countable if the topology $\calT$ has a countable basis.
 \end{definition}
 
 \begin{definition}
-	$(S,\calT)$ is Hausdorff if for all $x,y \in S$, with $x\ne y$, there are open sets $U, V \subseteq S$ so that $x \in U$, $y\in V$ and $U\cap V=\phi$.
+	$(S,\calT)$ is Hausdorff if for all $x,y \in S$, with $x\ne y$, there are open sets $U, V \subseteq S$ so that $x \in U$, $y\in V$ and $U\cap V=\emptyset$.
 	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}
@@ -50,52 +50,59 @@ Let $S$ be a set.
 			\draw[dotted, thick] (2,0) circle [radius=0.75] (2.2,-0.2) node {$y$} (2.75,-0.75) node {$V$};
 		\end{tikzpicture}
 	\end{figure}
-	In a Hausdorff space, we can always distinguish two points by enclosing them on open balls that do not intersect.
 \end{definition}
+
+The second-countability and ``Hausdorffness'' seams to be strange requirements but they are natural conditions, since The prototype of a manifold is the Euclidean space, which has these properties. If we do not impose these then many important results do not hold. For instance, we need Hausdorff condition in order to have unique convergence of sequences and uniqueness of ODE solutions.
+Without second-countability, it is not certain that we can embed the manifold in a finite-dimensional Euclidean space.
 
 Let's now define continuity in terms using topology language. Let $X, Y$ be any two topological spaces.
 
 \begin{definition}	
-	$f:X \to Y$ is continuous at $x\in X$ if for any open $V\subseteq Y$ containing $y$, there exists a open $U\subseteq X$ containing $x$ so that $f(U)\subseteq V$.
-	
-	\begin{figure}[H]
-		\centering
-			\begin{tikzpicture}
-			\draw plot [smooth cycle, tension=0.5] coordinates {(-2.4,-1)(-2.8,-0)(-3.2,0.5)(-3.2,1.3)(-2.7,1.7)(-1.7,1.5)(-1.2,0.5)(-0.7,-0.5)(-1.2,-1)};
-			\draw[dotted,thick, fill=green, fill opacity=0.15] (-2,0) circle(0.55);
-			\draw (-1.85,-0.15) node(x) {$x$};
-			\fill (-2,0) circle(0.05);
-			\draw plot [smooth cycle, tension=0.5] coordinates {(1.6,-1)(0.7,0)(0.6,0.5)(0.8,1.3)(1.3,1.7)(2.7,1.5)(3.1,0.5)(3.3,-0.2)(3.1,-1)};
-			\draw[dotted, thick] (2,0) circle(1.0);
-			\draw[dotted, thick, fill=green, fill opacity=0.15]  plot [smooth cycle] coordinates {(1.84, -0.6)(1.48, -0.2)(1.44, 0.)(1.52, 0.32)(1.72, 0.48)(2.2, 0.4)(2.36, 0.)(2.48, -0.28)(2.4, -0.6)};
-			\draw (2.15,-0.15) node(y) {$y$};
-			\fill (2,0) circle(0.05);
+	A map $f:X \to Y$ is continuous at $x\in X$ if for any open $V\subseteq Y$ containing $y$, there exists a open $U\subseteq X$ containing $x$ so that $f(U)\subseteq V$.
+
+\begin{definition}
+	A map $f:X\to Y$ is continuous if it is continuous al all $x\in X$.
+\end{definition}
+
+\begin{proposition}
+	A map $f:X\to Y$ is continuous iff for all open $V\subseteq Y$, the preimage $f^{-1}(V) \equiv \setst{x \in X}{ f(x) \in V} \subseteq X$ is open in $X$.	
+\end{proposition}
+
+\begin{figure}[H]
+	\centering
+		\begin{tikzpicture}
+			\begin{scope}[shift={(5,0)}]
+				\draw plot [smooth cycle, tension=0.5] coordinates {(-2.4,-1)(-2.8,-0)(-3.2,0.5)(-3.2,1.3)(-2.7,1.7)(-1.7,1.5)(-1.2,0.5)(-0.7,-0.5)(-1.2,-1)};
+				\draw[dotted,thick, fill=green, fill opacity=0.15] (-2,0) circle(0.55);
+				\draw (-1.85,-0.15) node(x) {};
+				%\fill (-2,0) circle(0.05);
+				\node[below right = 0 and 0 of x] () {$V$};
+				\node[above left = 1.1 and 0.4 of x] () {$Y$};
+			\end{scope}
+			\begin{scope}[shift={(-5,0)}]
+				\draw plot [smooth cycle, tension=0.5] coordinates {(1.6,-1)(0.7,0)(0.6,0.5)(0.8,1.3)(1.3,1.7)(2.7,1.5)(3.1,0.5)(3.3,-0.2)(3.1,-1)};
+				\draw[dotted, thick] (2.1,0) circle(1.0);
+				\draw[dotted, thick, fill=green, fill opacity=0.15]  plot [smooth cycle, shift={(0.2,-0.1)}] coordinates {(1.84, -0.6)(1.48, -0.2)(1.44, 0.)(1.52, 0.32)(1.72, 0.48)(2.2, 0.4)(2.36, 0.)(2.48, -0.28)(2.4, -0.6)};
+				\draw (2.15,-0.15) node(y) {};
+				%\fill (2,0) circle(0.05);
+				\node[above= 0.25 of y] () {$f^{-1}(V)$};
+				\node[above left= 1.2 and 0.4 of y] () {$X$};
+				\node[below right= 0.3 and 0.4 of y]  () {$U$};
+			\end{scope}
 			\node[anchor=north] at (-1.75, 0.65) (U) {};
 			\node[anchor=north] at (1.70, 0.65) (fU) {};
 			\draw[->,>=latex] (U) to [bend right=-30] node[above] {$f$} (fU);
-			\node[below right = -0.1  and -0.1 of x] () {$U$};
-			\node[above= 0.25 of y] () {$f(U)$};
-			\node[below right= 0.15 and 0.2 of y] () {$V$};
-			\node at (-2.5,1.4) () {$X$};
-			\node at (1.8,1.4) () {$Y$};
-			\end{tikzpicture}
-	\end{figure} 
+		\end{tikzpicture}
+		\caption{\color{red} Add caption to this figure}
+\end{figure} 
 \end{definition}
 
 \begin{definition}
-	$f:X\to Y$ is continuous if it is continuous al all $x\in X$.
+	A set $F\subseteq X$ is closed if $X\backslash F \subseteq X$ is open.
 \end{definition}
 
 \begin{proposition}
-	$f:X\to Y$ is continuous iff for all open $V\subseteq Y$, the preimage $f^{-1}(V) \equiv \setst{x \in X}{ f(x) \in V} \subseteq X$ is open in $X$.	
-\end{proposition}
-
-\begin{definition}
-	$F\subseteq X$ is closed if $X\backslash F \subseteq X$ is open.
-\end{definition}
-
-\begin{proposition}
-	$f:X\to Y$ is continuous iff $f^{-1}(F) \subseteq X$ is closed in $X$, for every closed $F\subseteq Y$ in $Y$.
+	A map $f:X\to Y$ is continuous iff $f^{-1}(F) \subseteq X$ is closed in $X$, for every closed $F\subseteq Y$ in $Y$.
 \end{proposition}
 
 \begin{definition}
@@ -105,11 +112,11 @@ Let's now define continuity in terms using topology language. Let $X, Y$ be any 
 \subsection{Differential Manifolds}
 
 \begin{definition}
-	A topological manifold of dimension $m$ is a second countable, Hausdorff topological space $M$, so that any $p \in M$ has a open neighborhood $x \ni U \subseteq M$, which is homeomorphic with $\bbR^m$.
+	A topological manifold of dimension $m$ is a second countable, Hausdorff topological space $M$, so that any $p \in M$ has a open neighborhood $x \ni U \subseteq M$, which is homeomorphic with $\bbR^m$. For convenience, we will sometimes write $M^m\equiv M$ such that $\dim(M)=m$.
 \end{definition}
 
 \begin{remark}
-	We mightas well have said homeomorphic with an open subset of $\bbR^m$, because $B(0,\epsilon) = \setst{x\in \bbR^m}{ \norm{x} < \epsilon } \cong \bbR^m$. To see that we can use the function
+	We might as well have said homeomorphic with an open subset of $\bbR^m$, because $B(0,\epsilon) = \setst{x\in \bbR^m}{ \norm{x} < \epsilon } \cong \bbR^m$. To see that we can use the function
 	\begin{align*}
 		f:~&B(0,\epsilon) \to \bbR^m \\
 		& x \mapsto \frac{x}{\epsilon-\norm{x}}
@@ -117,8 +124,126 @@ Let's now define continuity in terms using topology language. Let $X, Y$ be any 
 \end{remark}
 
 \begin{remark}
-	The \emph{Theorem of Invariance of Domain} states that if $\phi:~\bbR^m \homeoto \bbR^n$, then $m=n$. Hence the definition is consistent.
+	The \emph{Theorem of Invariance of Domain} states that if exists $\phi:\bbR^m \homeoto \bbR^n$, then $m=n$. Hence the definition is consistent.
 \end{remark}
 
+\begin{definition}
+	A chart on a topological manifold $M^m$ is a tuple $(U,\phi)$, where $U\subseteq M$ is a open subset in $M$ and $\phi$ is a homeomorphism from $U$ to $V=\phi(U)\subseteq \bbR^m$ open in $\bbR^m$. If $0\in V$, we say that the chart is centered on $p$ if $\phi(0)=p$.
+
+	\begin{itemize}
+		\item $(U,\phi)$ is sometimes referred to as a coordinate patch.
+		\item $(x_1(p),\dots,x_m(p))=\phi(p)$ are called local coordinates of the point $p$ in the chart $(U, \phi)$.
+		\item $\phi^{-1}$ is also a homeomorphism and it is called a parametrisation.
+	\end{itemize}
+
+\end{definition}
+
+We now are going to define the differential structure of the manifold.
+
+\begin{definition}
+	A $\calC^0$-atlas for $M$ is a collection $\calA = \setst{(U_\alpha, \phi_\alpha)}{\alpha\in A}$ of charts so that $\bigcup_{\alpha\in A} U_\alpha = M$.
+\end{definition}
+
+\begin{definition}
+	A $\calC^k$-atlas for $M$ is a $\calC^0$-atlas such that
+	\begin{align*}
+		\theta_{\beta\alpha} \equiv {\phi_\beta \circ ({\phi_\alpha}\rvert_{U_{\alpha\beta}})^{-1}} \,:\, \phi_\alpha(U_{\alpha\beta}) \to \phi_\beta(U_{\alpha\beta}) ~,\quad
+	\end{align*}
+	are differentiable of class $\calC^k$ for all $\alpha,\beta \in A$, where $U_{\alpha\beta} \equiv U_\alpha \cap U_\beta$.
+\end{definition}
+
+\begin{remark}
+	~
+	\begin{itemize}
+		\item The mappings $\theta_{\alpha\beta}$ are called transition maps (mathematics) or coordinate transformations (physics).
+		\item Note that $U_{\alpha\beta}$ is open in $U_\alpha$ and $U_\beta$, so both $\phi_\alpha(U_{\alpha\beta})$ and $\phi_\beta(U_{\alpha\beta})$ are open in $\phi_\alpha(U_{\alpha})$ and $\phi_\alpha(U_{\alpha})$, respectively. Therefore $\phi_\alpha(U_{\alpha\beta})$ and $\phi_\beta(U_{\alpha\beta})$ are homeomorphic open sets in $\bbR^m$.
+	\end{itemize} 
+\end{remark}
+
+\begin{figure}[H]
+	\centering
+	\centerline{\includegraphics[width=0.7\textwidth]{Figures/diffhomeoreal.eps}}
+	\caption{Figure describing homeomorphism between open sets in $M$ and in $\bbR^m$, with transition maps $\theta_{\alpha\beta}$.}
+\end{figure}
+
+\begin{definition}[Provisional]
+	A differential manifold of class $\calC^k$ is a topological manifold $M$ together with a $\calC^k$ atlas.
+\end{definition}
+
+\begin{remark}[Smoothness]
+	A smooth atlas is one where the transitions functions are of the class $\calC^\infty$, i.e. infinitely differentiable.
+\end{remark}
+
+\begin{example}
+	~
+	\begin{enumerate}[(1)]
+		\item
+		$M=\bbR^m$ is a differential manifold, with the trivial smooth $\calC^\infty$-atlas $\calA = \set{(\bbR^m, \mathrm{id})}$, where $\mathrm{id}(x)=x$. Note that $\bbR^m$ is open in $\bbR^m$.
+
+		\item
+		Let $M=S^{m}\equiv \setst{x\in\bbR^{m+1}}{\norm{x}=1}$. 
+			
+		We write $x=(x_0,x_1,\dots,x_m)$. The stereographic projections from $N=(1,0,\dots,0)$ and $S=(-1,0,\dots,0)$ are given from the following charts
+		\begin{align*}
+			\begin{split}
+				\phi_N :~ &U_N \equiv S^m\backslash\set{N} \to R^m \\
+				&(x_0, \dots, x_m) \mapsto \frac{1}{1-x_0}(x_1, \dots, x_m) 
+			\end{split}
+			~~
+			\begin{split}
+				\phi_S :~ &U_S \equiv S^m\backslash\set{S} \to R^m \\
+				&(x_0, \dots, x_m) \mapsto \frac{1}{1+x_0}(x_1, \dots, x_m) 
+			\end{split}
+		\end{align*}
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.3]{Figures/underconstruction.jpg}
+			\caption{\color{red} Insert figure about describing the stereographic projection}
+		\end{figure}
+		
+		\begin{fact}
+			$\norm{\phi_N(p)} \,\norm{\phi_S(p)} =1$, for all $p\in U_N \cap U_S$.
+			
+			$\displaystyle \implies \theta_{NS}(y) = {\phi_N \circ ({\phi_S}\rvert_{U_{NS}})^{-1}}(y) = 
+			\frac{(y_1,\dots,y_m)}{(y_1)^2+\dots+(y_m)^2} = \frac{1}{\norm{y}^2}\, y$
+
+			Since this transition map is a map\footnotemark{} from $\bbR^m\backslash\set{0}$ to $\bbR^m\backslash\set{0}$ of class $C^\infty$, then $S^m$ is a smooth m-dimensional manifold.
+			\footnotetext{This is called the inversion map and is actually one-to-one in the $m$-dimensional punctured Euclidean space $\bbR^m\backslash\set{0}$. It maps the region $0<\norm{y}<1$ to the region $\norm{y}>1$ and vice-versa, while leaving the unit sphere unchanged.}
+		\end{fact}
+
+		\begin{notabene}
+			The topology on $S^m$ is the subspace topology, i.e. $U \subset S^m$ is defined to be open if it is of the form $U=S^m \cap V$ for some open $V\subseteq \bbR^m$.
+		\end{notabene}
+	
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Two charts $(\phi_\alpha, U_\alpha)$ and $(\phi_\beta, U_\beta)$ are said to be $\calC^k$-compatible if $\theta_{\beta\alpha} \equiv {\phi_\beta \circ ({\phi_\alpha}\rvert_{U_{\alpha\beta}})^{-1}}$ and $\theta_{\alpha\beta} = (\theta_{\beta\alpha})^{-1}$ are differentiable of class $\calC^k$. Note if $U\cap V = \emptyset$, we still say the transition map is smooth.
+\end{definition}
+
+\begin{definition}
+	A $\calC^k$-atlas is maximal if it contains all $\calC^k$-compatible charts.
+\end{definition}
+
+% \begin{remark}
+% 	In general there is not a unique maximal atlas on the manifold $M$. Consider $\bbR$ and the charts ($\bbR$, $\mathrm{id}$) and  ($\bbR$, $f$) , where $f(x)=x^3$. Each of these charts cover $\bbR$, but it's easy to check they are not smoothly compatible, so they generate distinct maximal atlases..3
+% \end{remark}
 
 
+
+\subsection{Differential Maps}
+
+\subsection{Inverse Function Theorem}
+
+\subsection{Submanifolds and the Submersion Theorem}
+
+\subsection{Compactness}
+
+\subsection{Quocient Manifolds}
+
+
+
+
+\cleardoublepage

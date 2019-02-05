@@ -23,7 +23,6 @@
 
     "editor.minimap.enabled": false,
 
-    "gitlens.blame.line.enabled": false,
     "gitlens.currentLine.enabled": false,
     "gitlens.hovers.currentLine.enabled": false
 }

@@ -1,10 +1,11 @@
-% !TEX root = ../Main.tex
+% !TEX root = Main.tex
 
 %--------------------------------------------------------------------------------
 %	PACKAGES
 %--------------------------------------------------------------------------------
 
-\usepackage{amsmath,amsfonts,amssymb,amscd,amsbsy,amsthm,mathtools,textcomp,stackrel}
+\usepackage{amsmath,amsfonts,amssymb,amscd,amsbsy,amsthm}
+\usepackage{mathtools,textcomp,stackrel}
 \usepackage{xfrac}
 \usepackage{bm}
 \usepackage{esint}
@@ -24,10 +25,9 @@
 %	WRAPPERS
 %--------------------------------------------------------------------------------
 
-\newcommand{\fracdd}[2][]{\frac{\dd #1}{\dd #2}}
+\newcommand{\fractd}[2][]{\frac{\dd #1}{\dd #2}}
 \newcommand{\fracpd}[2][]{\frac{\partial #1}{\partial #2}}
-
-\newcommand{\uu}[3][]{\,{}_{#1} #2_{#3}}
+\newcommand{\uu}[3][]{\mkern1mu{}_{#1} #2_{#3}}
 
 %--------------------------------------------------------------------------------
 %	MAPS
@@ -41,13 +41,12 @@
 %	SYMBOLS
 %--------------------------------------------------------------------------------
 
-\renewcommand{\Re}{\mathrm{Re}}
-\renewcommand{\Im}{\mathrm{Im}}
-
 % USUAL SETS
 \newcommand{\calT}{\mathcal{T}}
 \newcommand{\calU}{\mathcal{U}}
 \newcommand{\calV}{\mathcal{V}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calA}{\mathcal{A}}
 
 % FIELDS OF NUMBERS
 \newcommand{\bbN}{\mathbb N}
@@ -64,8 +63,15 @@
 \newcommand{\bblC}{\mathbbl C}
 \newcommand{\bblF}{\mathbbl F}
 
-% INTEGRALS / EXTERIOR D
-\newcommand{\dd}{\mathrm{d}}
+
+%--------------------------------------------------------------------------------
+%	MATH OPERATORS
+%--------------------------------------------------------------------------------
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\dd}{d\mkern-1mu}
+\DeclareMathOperator{\cc}{c.c.}
 
 
 %--------------------------------------------------------------------------------
@@ -102,8 +108,8 @@
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\bkt{[}{]}
 %\DeclarePairedDelimiter\set{\lbrace\,}{\,\rbrace}
-\DeclarePairedDelimiterX\set[1]{\lbrace}{\rbrace}{\,#1\,}
-\DeclarePairedDelimiterX\setst[2]{\lbrace}{\rbrace}{\,#1 \;\delimsize\vert\; #2\,}
+\DeclarePairedDelimiterX\set[1]{\lbrace}{\rbrace}{\mkern1mu#1\mkern1mu}
+\DeclarePairedDelimiterX\setst[2]{\lbrace}{\rbrace}{\mkern1mu#1\mkern3mu\delimsize\vert\mkern3mu#2\mkern1mu}
 
 \DeclarePairedDelimiter\bra{\langle}{\rvert}
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}
@@ -118,6 +124,7 @@
 
 %\catcode`\"=13
 %\newcommand{"}[1]{^{(#1)}}
+\theoremstyle{definition}
 \newtheorem{theorem}{Theorem}
 \newtheorem*{theorem*}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -126,10 +133,11 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{exercise}{Exercise}
 \newtheorem{example}{Example}
-\theoremstyle{definition}
 \newtheorem{definition}{Definition}
+\newtheorem*{notation}{Notation}
 \newtheorem*{claim}{Claim}
 \theoremstyle{remark}
+\newtheorem*{notabene}{Note}
 \newtheorem*{remark}{Remark}
 \newtheorem*{fact}{Fact}
 
