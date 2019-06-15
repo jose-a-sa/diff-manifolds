@@ -18,7 +18,7 @@ Let $S$ be a set.
 
 \begin{example}
 	~
-	\begin{enumerate}[1)]
+	\begin{enumerate}[(1)]
 		\item $ S=\bbR^n$, $U \in \calT$ iff $U \subseteq S$ is open in the usual sense.
 		\item If $(S, d)$ is a metric space, then it is a topological space.
 	\end{enumerate}
@@ -30,7 +30,7 @@ Let $S$ be a set.
 
 \begin{example}
 	~
-	\begin{enumerate}[1)]
+	\begin{enumerate}[(1)]
 		\item $\setst{B(x;\epsilon)}{ x \in \bbR^n, \epsilon\in\bbR^+}$ is a basis for the usual topology in $\bbR^n$.
 		\item $\setst{B(x;\epsilon)}{ x \in \bbQ^n, \epsilon\in\bbQ^+}$ is a countable basis for $\bbR^n$.
 	\end{enumerate}
@@ -52,7 +52,7 @@ Let $S$ be a set.
 	\end{figure}
 \end{definition}
 
-The second-countability and ``Hausdorffness'' seams to be strange requirements but they are natural conditions, since The prototype of a manifold is the Euclidean space, which has these properties. If we do not impose these then many important results do not hold. For instance, we need Hausdorff condition in order to have unique convergence of sequences and uniqueness of ODE solutions.
+The second-countability and ``Hausdorffness'' seams to be strange requirements but they are natural conditions, since the prototype of a manifold is the Euclidean space, which has these properties. If we do not impose these then many important results do not hold. For instance, we need Hausdorff condition in order to have unique convergence of sequences and uniqueness of ODE solutions.
 Without second-countability, it is not certain that we can embed the manifold in a finite-dimensional Euclidean space.
 
 Let's now define continuity in terms using topology language. Let $X, Y$ be any two topological spaces.
@@ -116,7 +116,7 @@ Let's now define continuity in terms using topology language. Let $X, Y$ be any 
 \end{definition}
 
 \begin{remark}
-	We might as well have said homeomorphic with an open subset of $\bbR^m$, because $B(0,\epsilon) = \setst{x\in \bbR^m}{ \norm{x} < \epsilon } \cong \bbR^m$. To see that we can use the function
+	We might as well have said homeomorphic with an open subset of $\bbR^m$, because $B(0,\epsilon) = \setst{x\in \bbR^m}{ \norm{x} < \epsilon }$. To see that we can use the function
 	\begin{align*}
 		f:~&B(0,\epsilon) \to \bbR^m \\
 		& x \mapsto \frac{x}{\epsilon-\norm{x}}
@@ -231,9 +231,69 @@ We now are going to define the differential structure of the manifold.
 % 	In general there is not a unique maximal atlas on the manifold $M$. Consider $\bbR$ and the charts ($\bbR$, $\mathrm{id}$) and  ($\bbR$, $f$) , where $f(x)=x^3$. Each of these charts cover $\bbR$, but it's easy to check they are not smoothly compatible, so they generate distinct maximal atlases..3
 % \end{remark}
 
+\begin{lemma}
+	Every $\calC^k$-atlas on a topological manifold is contained in a unique maximal $\calC^k$-atlas.
+\end{lemma}
 
+\begin{definition}
+	A differentiable manifold of dimension $m$ and of class $\calC^k$ is topological manifold $M^m$ with a maximal $\calC^k$-atlas. This atlas is sometimes refer to as a differential structure.
+\end{definition}
+
+\begin{example}
+	~
+	\begin{enumerate}[(1)]
+		\item
+		If $M^m$ is a $\calC^k$-manifold of dimension $m$, then any open $U\subseteq M^m$ is also a $\calC^k$-manifold of dimension $m$.
+
+		This is clear since for any open $U$ we can define charts
+		$$\phi_\alpha\rvert_{U_\alpha\cap U} : U_\alpha\cap U \to \phi_\alpha(U_\alpha\cap U) \subseteq \bbR^m$$
+		for any chart $\phi_\alpha : U_\alpha \to \phi_\alpha(U_\alpha) \subseteq \bbR^m$ on $M^m$.
+
+		\item 
+		If $U\subseteq \bbR^m$ is open and $g:U \to \bbR$ is of class $\calC^k$, then the graph of $g$
+		$$ G = \setst{ (x,g(x)) }{ x \in U} \subseteq \bbR^{m+1} $$
+		is also a $m$-dimensional manifold.
+		
+		Use the single chart $\phi : G \to U$, $(x, y) \mapsto x$, where $(x,y)\in U\times\bbR$. Note that $\phi^{-1}(x)=(x,g(x))$.
+
+		\item \emph{Level hypersufaces} $f(p)=0$
+		$$f:\bbR^{n+1}\to\bbR \qquad p=(x_1,\cdots,x_n,z)\mapsto f(p)$$
+		If $\fracpd[z]{f}(p_0)\ne0$, for $p_0 \in f^{-1}(0) = \setst{p\in\bbR^{n+1}}{f(p)=0}$, then exists an open neighbourhood of $p_0$, $V\subseteq \bbR^{n+1}$, so that
+		$$ f^{-1}(0) \cap V  = \setst{(x,g(x))}{ x \in U} \equiv U\times g(U) $$
+		for a unique $\calC^k$-function $g:U\to\bbR$, for some open $U\subseteq\bbR^{n}$.
+		Hence if $\nabla f (p)\ne 0 ~~\forall p \in f^{-1}(0)$, then $f^{-1}(0)$ will be a is a $\calC^k$-manifold of dimension $n$.
+		
+	\end{enumerate}
+\end{example}
 
 \subsection{Differential Maps}
+
+\begin{definition}
+	Let $U$ be open in $\bbR^n$. A function $f:U\to\bbR^m$ is differentiable at $x\in U$ if there is a linear map $D_x f : \bbR^n\to\bbR^m$ so that
+	$$ f(x + h) - f(x) = D_x f(h) + o(h) ~~,$$
+	where $\lim_{h\sto0} \frac{o(h)}{\norm{h}} = 0$. We may write  $D_x f(h)\equiv D_x f \cdot h$ to emphasize the linearity.
+	
+	A function $f:U\to\bbR^m$ is a differentiable iff it is differentiable in all $x\in U$.
+\end{definition}
+
+\begin{definition}
+	Let $M^m$ be a smooth manifold.
+	A function $f:M\to\bbR$ is differentiable at $p\in M$ if for some chart $(U,\phi)$, with $p\in U$, the function
+	$$ f \circ\phi^{-1} : \phi(U) \subseteq \bbR^m \to \bbR$$
+	is differentiable at $x=\phi(p)$.
+\end{definition}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.20]{Figures/underconstruction.jpg}
+	\caption{\color{red} Insert figure about describing differentiability using charts}
+\end{figure}
+
+\begin{definition}
+	A continuous function $f:M^m\to N^n$ is differentiable at $p\in M$ if for some chart $(U,\phi)$, the function
+	$$ f \circ\phi^{-1} : \phi(U) \subseteq \bbR^m \to \bbR$$
+	is differentiable at $x=\phi(p)$.
+\end{definition}
 
 \subsection{Inverse Function Theorem}
 
@@ -241,7 +301,7 @@ We now are going to define the differential structure of the manifold.
 
 \subsection{Compactness}
 
-\subsection{Quocient Manifolds}
+\subsection{Product and Quocient Manifolds}
 
 
 
