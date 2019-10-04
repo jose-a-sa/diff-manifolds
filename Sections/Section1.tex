@@ -109,6 +109,8 @@ Let's now define continuity in terms using topology language. Let $X, Y$ be any 
 	A continuous map $f:X\to Y$ is called a homeomorphism iff it has a continuous inverse $g:Y\to X$, such that $f \circ g = \mathrm{id}_Y$ and $g \circ f = \mathrm{id}_X$. We say that $X$ and $Y$ are homeomorphic. We write $g=f^{-1}$ and $X \cong Y$. 
 \end{definition}
 
+\clearpage
+
 \subsection{Differential Manifolds}
 
 \begin{definition}
@@ -124,7 +126,7 @@ Let's now define continuity in terms using topology language. Let $X, Y$ be any 
 \end{remark}
 
 \begin{remark}
-	The \emph{Theorem of Invariance of Domain} states that if exists $\phi:\bbR^m \homeoto \bbR^n$, then $m=n$. Hence the definition is consistent.
+	The \emph{Theorem of Invariance of Domain} states that if exists $\phi:\bbR^m \homeoto \bbR^n$, then $m=n$. Hence, the definition is consistent.
 \end{remark}
 
 \begin{definition}
@@ -132,7 +134,7 @@ Let's now define continuity in terms using topology language. Let $X, Y$ be any 
 
 	\begin{itemize}
 		\item $(U,\phi)$ is sometimes referred to as a coordinate patch.
-		\item $(x_1(p),\dots,x_m(p))=\phi(p)$ are called local coordinates of the point $p$ in the chart $(U, \phi)$.
+		\item $(x_1(p),\dots,x_m(p))\equiv\phi(p)$ are called local coordinates of the point $p$ for $(U, \phi)$.
 		\item $\phi^{-1}$ is also a homeomorphism and it is called a parametrisation.
 	\end{itemize}
 
@@ -162,7 +164,7 @@ We now are going to define the differential structure of the manifold.
 
 \begin{figure}[H]
 	\centering
-	\centerline{\includegraphics[width=0.7\textwidth]{Figures/diffhomeoreal.eps}}
+	\centerline{\includegraphics[width=0.55\textwidth]{Figures/diffhomeoreal.eps}}
 	\caption{Figure describing homeomorphism between open sets in $M$ and in $\bbR^m$, with transition maps $\theta_{\alpha\beta}$.}
 \end{figure}
 
@@ -198,7 +200,7 @@ We now are going to define the differential structure of the manifold.
 
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=0.3]{Figures/underconstruction.jpg}
+			\includegraphics[scale=0.25]{Figures/underconstruction.jpg}
 			\caption{\color{red} Insert figure about describing the stereographic projection}
 		\end{figure}
 		
@@ -262,9 +264,15 @@ We now are going to define the differential structure of the manifold.
 		$$ f^{-1}(0) \cap V  = \setst{(x,g(x))}{ x \in U} \equiv U\times g(U) $$
 		for a unique $\calC^k$-function $g:U\to\bbR$, for some open $U\subseteq\bbR^{n}$.
 		Hence if $\nabla f (p)\ne 0 ~~\forall p \in f^{-1}(0)$, then $f^{-1}(0)$ will be a is a $\calC^k$-manifold of dimension $n$.
-		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.20]{Figures/underconstruction.jpg}
+			\caption{\color{red} Insert figure about graph of a function}
+		\end{figure}	
 	\end{enumerate}
 \end{example}
+
+\clearpage
 
 \subsection{Differential Maps}
 
@@ -272,7 +280,6 @@ We now are going to define the differential structure of the manifold.
 	Let $U$ be open in $\bbR^n$. A function $f:U\to\bbR^m$ is differentiable at $x\in U$ if there is a linear map $D_x f : \bbR^n\to\bbR^m$ so that
 	$$ f(x + h) - f(x) = D_x f(h) + o(h) ~~,$$
 	where $\lim_{h\sto0} \frac{o(h)}{\norm{h}} = 0$. We may write  $D_x f(h)\equiv D_x f \cdot h$ to emphasize the linearity.
-	
 	A function $f:U\to\bbR^m$ is a differentiable iff it is differentiable in all $x\in U$.
 \end{definition}
 
@@ -281,6 +288,17 @@ We now are going to define the differential structure of the manifold.
 	A function $f:M\to\bbR$ is differentiable at $p\in M$ if for some chart $(U,\phi)$, with $p\in U$, the function
 	$$ f \circ\phi^{-1} : \phi(U) \subseteq \bbR^m \to \bbR$$
 	is differentiable at $x=\phi(p)$.
+	A function $f:M\to\bbR$ is a differentiable iff it is differentiable in all $p\in M$.
+\end{definition}
+
+\begin{definition}
+	A continuous map $f:M^m\to N^n$ is differentiable at $p\in M$ if for some charts $(U,\phi)$, with $p\in U\subseteq M$, and $(V,\psi)$, with $f(p)\in V\subseteq N$, the function in local coordinates
+	$$ \psi\circ f \circ\phi^{-1} : \phi(U) \subseteq \bbR^m \to \psi(V) \subseteq \bbR^n$$
+	is differentiable at $x=\phi(p)$.
+
+	\begin{notabene}
+		$f$ continuous means that we can take $(U,\phi)$ so that $f(U)\subseteq V$.
+	\end{notabene}
 \end{definition}
 
 \begin{figure}[H]
@@ -290,14 +308,98 @@ We now are going to define the differential structure of the manifold.
 \end{figure}
 
 \begin{definition}
-	A continuous function $f:M^m\to N^n$ is differentiable at $p\in M$ if for some chart $(U,\phi)$, the function
-	$$ f \circ\phi^{-1} : \phi(U) \subseteq \bbR^m \to \bbR$$
-	is differentiable at $x=\phi(p)$.
+	A diffeomorphism is a differentiable map $f:M^m \to N^n$ which has a differentiable inverse $g=f^{-1}: N^n \to M^m$. We say that $M$ and $N$ are diffeomorphic.
 \end{definition}
 
-\subsection{Inverse Function Theorem}
+\begin{example}
+	~
+	\begin{enumerate}[(1)]
+		\item $f:~\bbR \to \bbR, ~x \mapsto x~$ is a trivial diffeomorphism
+		\item $f:~\bbR \to \bbR, ~x \mapsto x^3~$ is a homeomorphism but not a diffeomorsphim because $f^{-1}(y)=\sqrt[3]{y}$ is no differentiable at $y=0$.
+	\end{enumerate}
+\end{example}
+
+\begin{notation}
+	~
+	\begin{itemize}
+		\item $\calC^k(M,N) = \setst{f:M\to N~}{\text{ $f$ is differentiable of class $\calC^k$}}$
+		\item $\calC^k(M) = \calC^k(M,\bbR)$
+	\end{itemize}
+\end{notation}
+
+\begin{example}
+	The General Linear group manifold $GL(n,\bbR)=\setst{ A \in M_n(\bbR)}{\det(A)\ne 0}$
+	
+	It is clear that $M_n(\bbR) \cong \bbR^{n^2}$ is a smooth manifold since the multiplication map is smooth.
+	Now to check $GL(n,\bbR)$ not that $\det: M_n(\bbR) \to R$ is a continuous map and we can write
+	$$GL(n,\bbR) = \det{}^{-1}\bigr((-\infty,0)\bigr) \,\bigsqcup\, \det{}^{-1}\bigr((0,+\infty)\bigr) ~.$$
+	The fact that preimage open set will also be open, then $GL(n,\bbR)$ is also open in $M_n(\bbR)$. Therefore $GL(n,\bbR)$ is a smooth manifold with two disconnected components.
+\end{example}
+
+\clearpage
 
 \subsection{Submanifolds and the Submersion Theorem}
+
+\begin{theorem}[Inverse Function] \label{thm:IFT}
+	Let $f:U\subseteq \bbR^m \to \bbR^n$ be smooth and $x\in U$ so that $D_x f : \bbR^m \homeoto \bbR^n$ is an isomorphism. Then $m=n$ and $f$ is a \emph{local diffeomorphism}, i.e., there exists an open neighbourhood  $V \subseteq U$ so that
+	$$ f\rvert_{V} : V \to f(V)$$
+	is a diffeomorphism onto the open set $f(V)\subseteq \bbR^n$.
+\end{theorem}
+
+\begin{center}
+	\begin{tikzcd}[row sep = huge, column sep = large]
+		\bbR^n \supseteq V \arrow[d, xshift=0.5ex, "\phi=f"]\arrow[r, yshift=0.5ex, "f"] & f(V)\subseteq\bbR^n \\
+		\bbR^n \supseteq \phi(V) \arrow[u, xshift=-0.5ex, "\phi^{-1}"]\arrow[ur, bend right=35, "f\circ\phi^{-1}=\mathrm{id}" right] &
+	\end{tikzcd}
+\end{center}
+
+Therefore, for  small enough open set it is possible to pick the chart $\phi=f$ in which the expansion of $f$ is the identity map.
+
+\begin{proof}
+	\color{red}{Add an outline of the proof}
+\end{proof}
+
+\begin{definition}
+	The rank of a smooth map $f: M^m \to N^n$ at $p\in M$ is the rank of the linear map
+	$$ D_x( \psi \circ f \circ \phi^{-1} ) : \bbR^m \to \bbR^n$$
+	for some chart $(U,\phi)$ of $M$ such that $p\in U$ and some chart $(V,\psi)$ of $N$ such that $f(p)\in V$, with $x=\phi(p)$.
+	\begin{remark}
+		The rank of a linear map $L: V \to W$ at $x \in V$ is given by $\dim \im (D_x L)$
+	\end{remark}
+\end{definition}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.20]{Figures/underconstruction.jpg}
+	\caption{\color{red} Insert figure about describing ranks using charts}
+\end{figure}
+
+\begin{definition}
+	Map $f:M^m \to N^n$ is a \emph{submersion} if it is subjective and the rank of $f$ for all $p\in M$ is $n$.
+\end{definition}
+
+\begin{notation}
+	For the next result we introduce the standard symbols for inclusions of factors into products and projections from products to factors:
+	\begin{align*}
+		\iota_2 : \bbR^p \to \bbR^m \times \bbR^p ~;\quad y \mapsto (0, y) \\
+		\pi_2 : \bbR^m \times \bbR^p \to \bbR^p ~;\quad (x,y) \mapsto y
+	\end{align*}
+\end{notation}
+
+\begin{corollary}[Submersion Theorem] \label{thm:Submersion}
+	If $0 \in U \subseteq \bbR^n = \bbR^m \times \bbR^p$ and if $f: U \to \bbR^q$ is smooth with $D f(0) \circ \iota_2 \equiv D_2 f(0) : \bbR^p \to \bbR^q$ a linear isomorphism, then $p=q$ and there is a local diffeomorphism $\phi$ around $0 \in \bbR^n$ so that $f\circ \phi = \pi_2 \Leftrightarrow f\circ\phi (x,y) = y$.
+\end{corollary}
+
+\begin{proof}
+	Let $\psi(x,y)=(x,f(x,y))$, where $(x,y)\in \bbR^m\times\bbR^p$. Then the matrix of $D\psi(0,0)$ has the form
+	$$ J\psi(0,0) = \begin{pmatrix}
+		\mathrm{Id}_m	& 0			\\
+		J_1 f(0,0)		& J_2 f(0,0)
+	\end{pmatrix} ~,$$
+	where $J_i f(0,0)$ is the Jacobian matrix of $D_i f(0,0)$.
+	Because $\det J_2 f(0,0) \ne 0$, then $D\psi(0,0)$ is an isomorphism and so, by \cref{thm:IFT}, $\phi$ is a local diffeomorphism at $(0,0)$.
+	
+\end{proof}
 
 \subsection{Compactness}
 
